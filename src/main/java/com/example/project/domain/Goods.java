@@ -1,9 +1,8 @@
 package com.example.project.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
+
 
 @Entity
 public class Goods {
@@ -14,6 +13,11 @@ public class Goods {
     private String title;
     private String description;
     private String cost;
+
+//    @OneToMany
+//    private List<GoodInOrder> goodInOrders;
+
+    private String filename;
 
     public Goods() {
     }
@@ -55,4 +59,19 @@ public class Goods {
     public void setDescription(String description) {
         this.description = description;
     }
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+//    public List<GoodInOrder> getGoodInOrders() {
+//        return goodInOrders;
+//    }
+//
+//    public void setGoodInOrders(List<GoodInOrder> goodInOrders) {
+//        this.goodInOrders = goodInOrders;
+//    }
 }
