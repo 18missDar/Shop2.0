@@ -8,7 +8,7 @@ import java.util.List;
 public class Goods {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     private String title;
     private String description;
@@ -28,11 +28,11 @@ public class Goods {
         this.cost = cost;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
