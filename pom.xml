@@ -1,91 +1,161 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
+
     <artifactId>project</artifactId>
+
     <version>1.0-SNAPSHOT</version>
 
+
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.7.RELEASE</version>
-        <relativePath/>
-    </parent>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-freemarker</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
-        </dependency>
+    <groupId>org.springframework.boot</groupId>
 
-        <!-- DataBase support -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
+    <artifactId>spring-boot-starter-parent</artifactId>
 
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+    <version>2.1.7.RELEASE</version>
 
-        <!-- Security support -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+    <relativePath/>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mail</artifactId>
-        </dependency>
+</parent>
 
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-        </dependency>
+<dependencies>
 
-        <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>persistence-api</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jpa</artifactId>
-        </dependency>
-    </dependencies>
+    <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+
+   <dependency>
+
+    <groupId>org.hibernate</groupId>
+
+    <artifactId>hibernate-core</artifactId>
+
+    <version>5.4.9.Final</version>
+
+    </dependency>
+
+
+     <dependency>
+
+    <groupId>org.hibernate.javax.persistence</groupId>
+
+    <artifactId>hibernate-jpa-2.0-api</artifactId>
+
+    <version>1.0.1.Final</version>
+
+    </dependency>
+
+
+    <dependency>
+
+    <groupId>org.springframework.data</groupId>
+
+    <artifactId>spring-data-jpa</artifactId>
+
+    </dependency>
+
+
+    <dependency>
+
+    <groupId>org.springframework.boot</groupId>
+
+    <artifactId>spring-boot-starter-web</artifactId>
+
+     </dependency>
+
+
+    <dependency>
+
+    <groupId>org.springframework.boot</groupId>
+
+    <artifactId>spring-boot-starter-freemarker</artifactId>
+
+    </dependency>
+
+
+    <dependency>
+
+    <groupId>org.springframework.boot</groupId>
+
+    <artifactId>spring-boot-devtools</artifactId>
+
+    <optional>true</optional>
+
+    </dependency>
+
+    <!-- DataBase support -->
+
+    <dependency>
+
+    <groupId>org.springframework.boot</groupId>
+
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+
+     </dependency>
+
+
+    <dependency>
+
+    <groupId>org.postgresql</groupId>
+
+    <artifactId>postgresql</artifactId>
+
+    <version>${postgresql.version}</version>
+
+    <scope>runtime</scope>
+
+    </dependency>
+
+    <!-- <dependency><groupId>mysql</groupId><artifactId>mysql-connector-java</artifactId><scope>runtime</scope></dependency><dependency><groupId>mysql</groupId><artifactId>mysql-connector-java</artifactId><version>8.0.12</version></dependency>-->
+
+
+    <!-- Security support -->
+
+
+    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
+
+
+
+    <dependency>
+
+    <groupId>org.springframework.boot</groupId>
+
+    <artifactId>spring-boot-starter-security</artifactId>
+
+    <version>2.2.1.RELEASE</version>
+
+    </dependency>
+
+
+   <dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-mail</artifactId>
+   </dependency>
+
+     </dependencies>
+
 
     <properties>
-        <java.version>1.8</java.version>
+
+    <java.version>1.8</java.version>
+
     </properties>
 
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-maven-plugin</artifactId>
-            <version>5.1.4</version>
-        </plugin>
-        </plugins>
-    </build>
+    <plugins>
+
+    <plugin>
+
+    <groupId>org.springframework.boot</groupId>
+
+    <artifactId>spring-boot-maven-plugin</artifactId>
+
+    </plugin>
+</plugins>
+
+</build>
 
 </project>

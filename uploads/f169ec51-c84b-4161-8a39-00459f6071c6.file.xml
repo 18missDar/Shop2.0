@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report>
+<goods category = "1">
+    <good>
+        <title>New good</title>
+        <description>New new</description>
+        <cost>330</cost>
+    </good>
+    <good>
+        <title>New good2</title>
+        <description>New new2</description>
+        <cost>430</cost>
+    </good>
+</goods>
+</report>

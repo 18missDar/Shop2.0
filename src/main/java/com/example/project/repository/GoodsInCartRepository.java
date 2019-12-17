@@ -1,4 +1,10 @@
 package com.example.project.repository;
 
-public interface GoodsInCartRepository {
+
+import com.example.project.domain.GoodsInCart;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface GoodsInCartRepository extends JpaRepository<GoodsInCart, Long> {
 }

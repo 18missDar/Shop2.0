@@ -6,6 +6,7 @@ create table goods (
       description varchar(2048),
       filename varchar(255),
       title varchar(255) not null,
+      category varchar(255) not null,
       primary key (id));
 
 create table user_role (

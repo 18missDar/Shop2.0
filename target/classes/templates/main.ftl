@@ -6,10 +6,22 @@
 <div class="row">
   <div class="col-3">
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-home" aria-selected="true">Category1</a>
-      <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-profile" aria-selected="false">Category2</a>
-      <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-messages" aria-selected="false">Category3</a>
-      <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-settings" aria-selected="false">Category4</a>
+     <form method="get" action="/main/category" class="form-inline">
+      <input type="hidden" name="category" class="form-control" value="${1}">
+      <button type="submit" class="btn btn-primary ml-4 mt-1">Category 1</button>
+      </form>
+      <form method="get" action="/main/category" class="form-inline">
+      <input type="hidden" name="category" class="form-control" value="${2}">
+            <button type="submit" class="btn btn-primary ml-4 mt-1">Category 2</button>
+       </form>
+      <form method="get" action="/main/category" class="form-inline">
+      <input type="hidden" name="category" class="form-control" value="${3}">
+             <button type="submit" class="btn btn-primary ml-4 mt-1">Category 3</button>
+       </form>
+      <form method="get" action="/main/category" class="form-inline">
+       <input type="hidden" name="category" class="form-control" value="${4}">
+             <button type="submit" class="btn btn-primary ml-4 mt-1">Category 4</button>
+      </form>
     </div>
   </div>
   <div class="col-9">
@@ -41,6 +53,9 @@
                      <input type="text" class="form-control" name="cost" placeholder="Стоимость">
                  </div>
                  <div class="form-group">
+                      <input type="text" class="form-control" name="category" placeholder="Введите артикул категории">
+                  </div>
+                 <div class="form-group">
                      <div class="custom-file">
                          <input type="file" name="file" id="customFile">
                          <label class="custom-file-label" for="customFile">Choose file</label>
@@ -53,6 +68,29 @@
              </form>
          </div>
      </div>
+
+     <#if isAdmin>
+               <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample">
+                   Add goods from XML
+               </a>
+          </#if>
+     <div class="collapse" id="collapseExample1">
+         <div class="form-group mt-3">
+            <form method="post" enctype="multipart/form-data" action="/xml" >
+                <div class="form-group">
+                    <div class="custom-file">
+                          <input type="file" name="file" id="customFile1">
+                           <label class="custom-file-label" for="customFile1">Choose file</label>
+                    </div>
+                </div>
+                <input type="hidden" name="_csrf" value="${_csrf.token}" />
+                 <div class="form-group">
+                      <button type="submit" class="btn btn-primary"> Add XML</button>
+                 </div>
+            </form>
+         </div>
+     </div>
+
          <div class="card-columns">
              <#list messages as message>
              <div class="card my-3">
@@ -66,7 +104,12 @@
                  <div class="card-footer text-muted">
                      <p> Цена: ${message.cost}</p>
                      <div class="form-group">
-                        <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add to basket</a>
+                       <#if isAdmin>
+                       <a href="/delete/${message.id}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Delete</a>
+                       <a href="/update/${message.id}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Update</a>
+                       <#else>
+                        <a href="/add/${message.id}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add to basket</a>
+                        </#if>
                      </div>
                  </div>
              </div>
@@ -78,31 +121,11 @@
     </div>
   </div>
   <footer class="page-footer font-small teal pt-4">
-
-    <!-- Footer Text -->
-    <div class="container-fluid text-center text-md-left">
-      <div class="row">
-        <div class="col-md-10 mt-md-0 mt-3">
-        <p>Your basket is </p>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright text-center py-3">© 2019
+    <div class="footer-copyright text-center py-3">© 2019 DAR Netcracker
     </div>
 
   </footer>
 </div>
  </#if>
-
-
-
-
-
-
-
-
-
-
-
 
 </@c.page>
