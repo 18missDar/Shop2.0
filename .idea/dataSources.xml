@@ -6,10 +6,6 @@
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://ec2-54-247-82-14.eu-west-1.compute.amazonaws.com:5432/dc986rusmq0d7</jdbc-url>
-      <driver-properties>
-        <property name="ssl" value="ture" />
-        <property name="sslfactory" value="org.postgresql.ssl.NonValidatingFactory" />
-      </driver-properties>
     </data-source>
   </component>
 </project>
