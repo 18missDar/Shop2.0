@@ -105,12 +105,9 @@
     <artifactId>postgresql</artifactId>
 
     <version>${postgresql.version}</version>
-
     </dependency>
-git
 
-    <dependency>
-
+    <dependency>git
     <groupId>org.springframework.boot</groupId>
 
     <artifactId>spring-boot-starter-security</artifactId>
