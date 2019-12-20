@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Online Shop</title>
-    <link rel="stylesheet" href="/src/main/webapp/resources/static/style.css">
-    <link rel="shortcut icon" href="/src/main/webapp/resources/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
