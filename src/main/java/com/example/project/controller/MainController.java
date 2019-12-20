@@ -33,7 +33,7 @@ public class MainController {
     @Value("${upload.path}")
     private String uploadPath;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping("/")
     public String greeting(Model model) {
         return "greeting";
     }
