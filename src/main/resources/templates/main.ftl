@@ -89,9 +89,9 @@
          <div class="card-columns">
              <#list messages as message>
              <div class="card my-3">
-
-                 <img src="/images/korzina.jpg" class="card-img-top">
-
+                 <#if message.filename??>
+                 <img src="/img/${message.filename}" class="card-img-top">
+                 </#if>
                  <div class="m-2">
                     <i>${message.title}</i>
                     <i>${message.description}</i>
