@@ -77,12 +77,7 @@
      <div class="collapse" id="collapseExample1">
          <div class="form-group mt-3">
             <form method="post" enctype="multipart/form-data" action="/xml" >
-                <div class="form-group">
-                    <div class="custom-file">
-                          <input type="file" name="file" id="customFile1">
-                           <label class="custom-file-label" for="customFile1">Choose file</label>
-                    </div>
-                </div>
+                <textarea type = "text" style="overflow: auto" name = "file" cols="100" rows="12"></textarea>
                 <input type="hidden" name="_csrf" value="${_csrf.token}" />
                  <div class="form-group">
                       <button type="submit" class="btn btn-primary"> Add XML</button>
@@ -94,9 +89,9 @@
          <div class="card-columns">
              <#list messages as message>
              <div class="card my-3">
-                 <#if message.filename??>
-                 <img src="/img/${message.filename}" class="card-img-top">
-                 </#if>
+
+                 <img src="/images/korzina.jpg" class="card-img-top">
+
                  <div class="m-2">
                     <i>${message.title}</i>
                     <i>${message.description}</i>

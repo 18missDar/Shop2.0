@@ -21,6 +21,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -89,27 +90,21 @@ public class MainController {
 
     @PostMapping("/xml")
     public String addFrom(Map<String, Object> model,
-                      @RequestParam("file") MultipartFile file) throws IOException, ParserConfigurationException, SAXException {
-        String path = "";
-        if (file != null && !file.getOriginalFilename().isEmpty()) {
-            File uploadDir = new File(uploadPath);
-
-            if (!uploadDir.exists()) {
-                uploadDir.mkdir();
-            }
-
-            String uuidFile = UUID.randomUUID().toString();
-            String resultFilename = uuidFile + "." + file.getOriginalFilename();
-
-            file.transferTo(new File(uploadPath + "/" + resultFilename));
-            path = uploadPath + "/" + resultFilename;
+                          @RequestParam("file") String file) throws IOException, ParserConfigurationException, SAXException {
+        File file1 = new File("xmlfile.xml");
+        if (!file1.exists()){
+            file1.createNewFile();
         }
+        PrintWriter pw = new PrintWriter(file1);
+        pw.print(file);
+        pw.close();
+
         SAXParserFactory spf = SAXParserFactory.newInstance();
         SAXParser saxParser = spf.newSAXParser();
         XMLReader xmlReader = saxParser.getXMLReader();
         MyHandler handler = new MyHandler();
         xmlReader.setContentHandler(handler);
-        xmlReader.parse(path);
+        xmlReader.parse("xmlfile.xml");
 
         Report report = handler.getReport();
 
@@ -120,7 +115,7 @@ public class MainController {
         Iterable<Goods> messages = messageRepo.findAll();
 
         model.put("messages", messages);
-
+        file1.delete();
         return "main";
 
     }
