@@ -40,6 +40,18 @@ public class UserService implements UserDetailsService {
         }
     }
 
+    public void sendOrderMessage(User user) {
+        if (!StringUtils.isEmpty(user.getEmail())) {
+            String message = String.format(
+                    "Hello, %s! \n" +
+                            "Your order was successful framed",
+                    user.getUsername()
+            );
+
+            mailSender.send(user.getEmail(), "Order message", message);
+        }
+    }
+
     public boolean addUser(User user) {
         User userFromDb = userRepo.findByUsername(user.getUsername());
 

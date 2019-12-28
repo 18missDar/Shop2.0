@@ -24,4 +24,9 @@
   </tbody>
 </table>
 
+ <a class="btn btn-primary mt-3" href="/checkout">
+  Checkout
+</a>
+
+
 </@c.page>

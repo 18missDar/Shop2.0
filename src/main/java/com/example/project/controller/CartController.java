@@ -44,30 +44,28 @@ public class CartController {
     }
 
     @GetMapping("/add/{id}")
-    public String addBasket(@PathVariable("id") Long id, @AuthenticationPrincipal User user){
+    public String addBasket(@PathVariable("id") Long id, @AuthenticationPrincipal User user) {
         Goods good = goodRepo.findById(id).get();
-           Optional<Cart> cart = cartRepo.findByUser(user);
-           Cart myCart;
-           if (cart.isPresent()){
-              myCart = cart.get();
-              Item newItem = myCart.find(good);
-             if ( newItem != null){
-                 int size = newItem.getQuantity();
-                 newItem.setQuantity(size+1);
-                 updateList(myCart, newItem);
-             }
-             else{
-                  Item item = new Item(good.getId(), 1, user);
-                  updateList(myCart, item);
-              }
-           }
-           else{
-              Item item = new Item(good.getId(), 1, user);
-              itemRepo.save(item);
-              List<Item> items = new ArrayList<>();
-              items.add(item);
-              myCart = new Cart(items, user);
-           }
+        Optional<Cart> cart = cartRepo.findByUser(user);
+        Cart myCart;
+        if (cart.isPresent()) {
+            myCart = cart.get();
+            Item newItem = myCart.find(good);
+            if (newItem != null) {
+                int size = newItem.getQuantity();
+                newItem.setQuantity(size + 1);
+                updateList(myCart, newItem);
+            } else {
+                Item item = new Item(good.getId(), 1, user);
+                updateList(myCart, item);
+            }
+        } else {
+            Item item = new Item(good.getId(), 1, user);
+            itemRepo.save(item);
+            List<Item> items = new ArrayList<>();
+            items.add(item);
+            myCart = new Cart(items, user);
+        }
         cartRepo.save(myCart);
         return "redirect:/main";
     }
@@ -148,6 +146,40 @@ public class CartController {
 
         return "usercarts";
     }
+
+    @GetMapping("/checkout")
+    public String showGoodsInOrder(@AuthenticationPrincipal User user, Model model){
+        Optional<Cart> cart = cartRepo.findByUser(user);
+        List<GoodsInCart> messages = new ArrayList<>();
+        double sum = 0;
+        if (cart.isPresent()){
+            Cart myCart = cart.get();
+            for (Item item:myCart.getItems()){
+                Goods good = goodRepo.findById(item.getGoodID()).get();
+                if (good.isActive()){
+                    GoodsInCart goods = new GoodsInCart(good.getTitle(), good.getCost(), item.getQuantity(), good.getId());
+                    sum += Double.valueOf(good.getCost()) * Double.valueOf(item.getQuantity());
+                    goodsInCartRepository.save(goods);
+                    messages.add(goods);
+                }
+            }
+            model.addAttribute("messages", messages);
+            model.addAttribute("sum", sum);
+        }
+        else{
+            model.addAttribute("messages", new ArrayList<>());
+            model.addAttribute("sum", sum);
+        }
+        return "showorder";
+    }
+
+
+    @GetMapping("/pay")
+    public String pay(@AuthenticationPrincipal User user){
+        userSevice.sendOrderMessage(user);
+        return "pay";
+    }
+
 
 
 }

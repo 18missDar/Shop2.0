@@ -76,6 +76,9 @@ public class MainController {
 
             file.transferTo(new File(uploadPath + "/" + resultFilename));
 
+
+//            final File appFolder = new File(System.getProperty("user.home"), ".yourapp");
+
             message.setFilename(resultFilename);
         }
 
