@@ -2,7 +2,7 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="heroku" uuid="cb1c3999-0bf2-4646-82d8-ae76c3c256cb">
-      <database-info product="PostgreSQL" version="11.5 (Ubuntu 11.5-3.pgdg16.04+1)" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.2.5" dbms="POSTGRES" exact-version="11.5" exact-driver-version="42.2">
+      <database-info product="PostgreSQL" version="11.6 (Ubuntu 11.6-1.pgdg16.04+1)" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.2.5" dbms="POSTGRES" exact-version="11.6" exact-driver-version="42.2">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />

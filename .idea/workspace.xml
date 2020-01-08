@@ -2,28 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f45823a-4862-4155-9613-b7f1bb6ea255" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/project/repository/UserPayedGoods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project/config/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project/controller/CartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project/domain/Usercarts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project/domain/Usercarts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/main.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/main.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/parts/navbar.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/parts/navbar.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/parts/security.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/parts/security.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/showorder.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/showorder.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/project/config/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/project/config/WebSecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/project/controller/CartController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/project/controller/CartController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/project/domain/Usercarts.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/project/domain/Usercarts.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/project/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/project/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/main.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/main.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/parts/navbar.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/parts/navbar.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/parts/security.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/parts/security.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/showorder.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/showorder.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/project-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/project-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/project-1.0-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/project-1.0-SNAPSHOT.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/initDB_postgres.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/initDB_postgres.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,30 +37,6 @@
         <item name="heroku" type="feb32156:DbDataSourceImpl" />
         <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="dc986rusmq0d7: database" type="162271b6:PgImplModel$Database" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="heroku" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="dc986rusmq0d7: database" type="162271b6:PgImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="heroku" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="dc986rusmq0d7: database" type="162271b6:PgImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="heroku" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="dc986rusmq0d7: database" type="162271b6:PgImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
-        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
     </expand>
     <select />
@@ -193,7 +150,7 @@
       <workItem from="1577279690227" duration="4098000" />
       <workItem from="1577289989813" duration="6583000" />
       <workItem from="1577539243998" duration="816000" />
-      <workItem from="1578465616594" duration="1541000" />
+      <workItem from="1578465616594" duration="2704000" />
     </task>
     <servers />
   </component>
@@ -229,26 +186,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576774696683" />
-    <state x="758" y="222" key="ExecutionTargetDialog" timestamp="1576604307142">
+    <state x="758" y="222" key="ExecutionTargetDialog" timestamp="1578468057203">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="758" y="222" key="ExecutionTargetDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576604307142" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1578467198048">
+    <state x="758" y="222" key="ExecutionTargetDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578468057203" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1578467972112">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1578467198048" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1578467198047">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1578467972112" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1578467972111">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1578467198047" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1578467198045">
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1578467972111" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1578467972111">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1578467198045" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1578467198047">
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1578467972111" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1578467972111">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1578467198047" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1578467972111" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1576614253092">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
