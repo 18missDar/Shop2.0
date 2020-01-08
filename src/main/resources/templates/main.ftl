@@ -127,11 +127,6 @@
             </div>
         </div>
 
-        <div class="navbar-fixed-bottom row-fluid">
-            <div class="footer-copyright text-center py-3">© 2019 DAR Netcracker
-            </div>
-        </div>
-
     </div>
 
 

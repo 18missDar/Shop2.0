@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Online Shop</title>
+    <link rel="stylesheet" href="/static/style.css">
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,6 +17,10 @@
 <#include "navbar.ftl">
 <div class="container mt-5">
 <#nested>
+</div>
+<div class="footer">
+    <div class="footer-copyright text-center py-3">© 2020 DAR Netcracker
+    </div>
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
