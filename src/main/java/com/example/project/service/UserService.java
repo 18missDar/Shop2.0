@@ -3,6 +3,8 @@ package com.example.project.service;
 
 import com.example.project.domain.Role;
 import com.example.project.domain.User;
+import com.example.project.domain.Usercarts;
+import com.example.project.repository.UserPayedGoods;
 import com.example.project.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +23,9 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private MailSender mailSender;
+
+    @Autowired
+    private UserPayedGoods userPayedGoods;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -41,10 +46,35 @@ public class UserService implements UserDetailsService {
     }
 
     public void sendOrderMessage(User user) {
+        String payed = "";
+        List<Usercarts> usercartsLisPayed = userPayedGoods.findByUsername(user.getUsername());
+        for (int i = 0; i< usercartsLisPayed.size(); i++){
+            Usercarts usercarts = usercartsLisPayed.get(i);
+            if (!usercarts.isMailed()){
+                if (usercarts.getTitle().equals(user.getUsername())){
+                    payed += "Total cost: ";
+                    payed += usercarts.getTotalcost();
+                }
+                else{
+                    payed += "Title: ";
+                    payed += usercarts.getTitle();
+                    payed += "  ";
+                    payed += " Cost: ";
+                    payed += usercarts.getCost();
+                    payed += "  ";
+                    payed += " Amount: ";
+                    payed += usercarts.getAmount();
+                    payed += "  \n";
+                }
+
+            }
+            usercarts.setMailed(true);
+            userPayedGoods.save(usercarts);
+        }
         if (!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format(
                     "Hello, %s! \n" +
-                            "Your order was successful framed",
+                            "Your order was successful framed. Payed goods : \n" + payed,
                     user.getUsername()
             );
 

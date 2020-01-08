@@ -23,6 +23,7 @@ com\example\project\controller\UserController.class
 com\example\project\domain\Usercarts.class
 com\example\project\domain\User.class
 com\example\project\domain\Role.class
+com\example\project\repository\UserPayedGoods.class
 com\example\project\service\MailSender.class
 com\example\project\config\HibernateConfig.class
 com\example\project\domain\Cart.class

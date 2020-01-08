@@ -9,6 +9,7 @@ C:\Intel\project\src\main\java\com\example\project\controller\UserController.jav
 C:\Intel\project\src\main\java\com\example\project\domain\Usercarts.java
 C:\Intel\project\src\main\java\com\example\project\config\HibernateConfig.java
 C:\Intel\project\src\main\java\com\example\project\config\WebSecurityConfig.java
+C:\Intel\project\src\main\java\com\example\project\repository\UserPayedGoods.java
 C:\Intel\project\src\main\java\com\example\project\controller\RegistrationController.java
 C:\Intel\project\src\main\java\com\example\project\repository\CartRepository.java
 C:\Intel\project\src\main\java\com\example\project\Application.java

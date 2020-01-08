@@ -1,13 +1,23 @@
 package com.example.project.domain;
 
 
+import javax.persistence.*;
 
+@Entity
+@Table(name = "payedgoods")
 public class Usercarts {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
 
     private String username;
     private String title;
     private String amount;
     private String cost;
+    private boolean payed;
+    private boolean mailed;
+    private String totalcost;
 
     public Usercarts(){
 
@@ -18,6 +28,8 @@ public class Usercarts {
         this.title = title;
         this.amount = amount;
         this.cost = cost;
+        this.payed = false;
+        this.mailed = false;
     }
 
     public String getUsername() {
@@ -52,4 +64,36 @@ public class Usercarts {
         this.cost = cost;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public boolean isPayed() {
+        return payed;
+    }
+
+    public void setPayed(boolean payed) {
+        this.payed = payed;
+    }
+
+    public boolean isMailed() {
+        return mailed;
+    }
+
+    public void setMailed(boolean mailed) {
+        this.mailed = mailed;
+    }
+
+    public String getTotalcost() {
+        return totalcost;
+    }
+
+    public void setTotalcost(String totalcost) {
+        this.totalcost = totalcost;
+    }
 }
+

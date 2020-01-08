@@ -34,6 +34,9 @@ public class CartController {
     @Autowired
     private UserService userSevice;
 
+    @Autowired
+    private UserPayedGoods userPayedGoods;
+
 
 
     public void updateList(Cart myCart, Item item){
@@ -44,22 +47,24 @@ public class CartController {
     }
 
     @GetMapping("/add/{id}")
-    public String addBasket(@PathVariable("id") Long id, @AuthenticationPrincipal User user) {
+    public String addBasket(@PathVariable("id") Long id, @AuthenticationPrincipal User user){
         Goods good = goodRepo.findById(id).get();
         Optional<Cart> cart = cartRepo.findByUser(user);
         Cart myCart;
-        if (cart.isPresent()) {
+        if (cart.isPresent()){
             myCart = cart.get();
             Item newItem = myCart.find(good);
-            if (newItem != null) {
+            if ( newItem != null){
                 int size = newItem.getQuantity();
-                newItem.setQuantity(size + 1);
+                newItem.setQuantity(size+1);
                 updateList(myCart, newItem);
-            } else {
+            }
+            else{
                 Item item = new Item(good.getId(), 1, user);
                 updateList(myCart, item);
             }
-        } else {
+        }
+        else{
             Item item = new Item(good.getId(), 1, user);
             itemRepo.save(item);
             List<Item> items = new ArrayList<>();
@@ -79,10 +84,11 @@ public class CartController {
             for (Item item:myCart.getItems()){
                 Goods good = goodRepo.findById(item.getGoodID()).get();
                 GoodsInCart goods = new GoodsInCart(good.getTitle(), good.getCost(), item.getQuantity(), good.getId());
+
                 goodsInCartRepository.save(goods);
                 messages.add(goods);
             }
-           model.addAttribute("messages", messages);
+            model.addAttribute("messages", messages);
         }
         else{
             model.addAttribute("messages", new ArrayList<>());
@@ -117,17 +123,13 @@ public class CartController {
 
         for (int i =0; i< users.size(); i++){
             User usr = users.get(i);
-            String username = usr.getUsername();
-            Optional<Cart> cart = cartRepo.findByUser(usr);
-            if (cart.isPresent()){
-                List<Item> items = cart.get().getItems();
-                for (int j= 0; j<items.size(); j++){
-                    Item item = items.get(j);
-                    Goods good = goodRepo.findById(item.getGoodID()).get();
-                    Usercarts usercarts = new Usercarts(username, good.getTitle(), good.getCost(), item.getQuantity().toString());
-                    usercartsList.add(usercarts);
+            List<Usercarts> usercartsLisPayed = userPayedGoods.findByUsername(usr.getUsername());
+            for (int j = 0; j< usercartsLisPayed.size(); j++){
+                if (usercartsLisPayed.get(j).isPayed()){
+                    usercartsList.add(usercartsLisPayed.get(j));
                 }
             }
+
         }
 
 
@@ -159,10 +161,15 @@ public class CartController {
                 if (good.isActive()){
                     GoodsInCart goods = new GoodsInCart(good.getTitle(), good.getCost(), item.getQuantity(), good.getId());
                     sum += Double.valueOf(good.getCost()) * Double.valueOf(item.getQuantity());
+                    Usercarts usercarts = new Usercarts(user.getUsername(),good.getTitle(),good.getCost(), item.getQuantity().toString());
+                    userPayedGoods.save(usercarts);
                     goodsInCartRepository.save(goods);
                     messages.add(goods);
                 }
             }
+            Usercarts usercarts = new Usercarts(user.getUsername(), user.getUsername(), user.getUsername(), user.getUsername());
+            usercarts.setTotalcost(Double.toString(sum));
+            userPayedGoods.save(usercarts);
             model.addAttribute("messages", messages);
             model.addAttribute("sum", sum);
         }
@@ -176,10 +183,14 @@ public class CartController {
 
     @GetMapping("/pay")
     public String pay(@AuthenticationPrincipal User user){
+        List<Usercarts> usercartsLisPayed = userPayedGoods.findByUsername(user.getUsername());
+        for (int i = 0; i< usercartsLisPayed.size(); i++){
+            usercartsLisPayed.get(i).setPayed(true);
+            userPayedGoods.save(usercartsLisPayed.get(i));
+        }
         userSevice.sendOrderMessage(user);
         return "pay";
     }
-
 
 
 }

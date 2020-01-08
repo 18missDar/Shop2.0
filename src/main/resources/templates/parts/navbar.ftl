@@ -16,33 +16,33 @@
                 <a class="nav-link" href="/main">Goods</a>
             </li>
             <#if isAdmin>
-            <li class="nav-item">
-                <a class="nav-link" href="/user">User list</a>
-            </li>
-            </#if>
-             <#if isAdmin>
-               <li class="nav-item">
-               <a class="nav-link" href="/discounts">Discounts</a>
-               </li>
-             </#if>
-             <#if isAdmin>
                 <li class="nav-item">
-                <a class="nav-link" href="/usercarts">User carts</a>
+                    <a class="nav-link" href="/user">User list</a>
                 </li>
-             </#if>
-             <#if user??>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/user/profile">Profile</a>
-                        </li>
-                        </#if>
-              <#if user??>
-                  <li class="nav-item">
-                 <a class="nav-link" href="/cart">Cart</a>
-               </li>
-              </#if>
+            </#if>
+            <#if isAdmin>
+                <li class="nav-item">
+                    <a class="nav-link" href="/discounts">Discounts</a>
+                </li>
+            </#if>
+            <#if isAdmin>
+                <li class="nav-item">
+                    <a class="nav-link" href="/usercarts">User carts</a>
+                </li>
+            </#if>
+            <#if user??>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/profile">Profile</a>
+                </li>
+            </#if>
+            <#if user??>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cart">Cart</a>
+                </li>
+            </#if>
         </ul>
 
         <div class="navbar-text mr-3">${name}</div>
-        <#if name !="unknown"> <@l.logout/> </#if>
+        <#if name !="guest"> <@l.logout/> </#if>
     </div>
 </nav>
