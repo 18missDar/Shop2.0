@@ -50,7 +50,7 @@ public class UserService implements UserDetailsService {
         List<Usercarts> usercartsLisPayed = userPayedGoods.findByUsername(user.getUsername());
         for (int i = 0; i< usercartsLisPayed.size(); i++){
             Usercarts usercarts = usercartsLisPayed.get(i);
-            if (!usercarts.isMailed()){
+            if (usercarts.isMailed() == false){
                 if (usercarts.getTitle().equals(user.getUsername())){
                     payed += "Total cost: ";
                     payed += usercarts.getTotalcost();
