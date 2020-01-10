@@ -49,6 +49,7 @@ public class CartController {
     @GetMapping("/add/{id}")
     public String addBasket(@PathVariable("id") Long id, @AuthenticationPrincipal User user){
         Goods good = goodRepo.findById(id).get();
+        String categ = good.getCategory();
         Optional<Cart> cart = cartRepo.findByUser(user);
         Cart myCart;
         if (cart.isPresent()){
@@ -72,7 +73,7 @@ public class CartController {
             myCart = new Cart(items, user);
         }
         cartRepo.save(myCart);
-        return "redirect:/main";
+        return "redirect:/main/category?category=" + categ;
     }
 
     @GetMapping("/cart")

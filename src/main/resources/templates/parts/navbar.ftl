@@ -10,9 +10,6 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="/main">Goods</a>
             </li>
             <#if isAdmin>
@@ -44,5 +41,6 @@
 
         <div class="navbar-text mr-3">${name}</div>
         <#if name !="guest"> <@l.logout/> </#if>
+        <#if name =="guest"> <a class="btn btn-primary" href="/login" role="button" >Log in</a> </#if>
     </div>
 </nav>

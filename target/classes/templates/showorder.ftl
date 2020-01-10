@@ -29,15 +29,17 @@
 
     <h3><p>Choose a delivery method</p></h3>
 
-
-    <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-        <label class="custom-control-label" for="defaultUnchecked">Shipment at own expense to the address Moscow, Novoryazanskoye Highway, 151</label>
+    <div class="form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+            Shipment at own expense to the address Moscow, Novoryazanskoye Highway, 151
+        </label>
     </div>
-
-    <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="defaultUnchecked1">
-        <label class="custom-control-label" for="defaultUnchecked1">Delivery to</label>
+    <div class="form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            Delivery to
+        </label>
         <input type="text" class="form-control" placeholder="Your address" name = "address"/>
     </div>
 
