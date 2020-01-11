@@ -6,6 +6,7 @@ import com.example.project.domain.User;
 import com.example.project.repository.GoodsRepository;
 import com.example.project.service.GoodService;
 import com.example.project.service.MyHandler;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -15,13 +16,14 @@ import org.springframework.web.context.ContextLoader;
 import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
+import sun.misc.BASE64Encoder;
 
+import javax.imageio.ImageIO;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -55,6 +57,7 @@ public class MainController {
         return "main";
     }
 
+
     @PostMapping("/main")
     public String add(@RequestParam String title,
                       @RequestParam String description,
@@ -65,21 +68,17 @@ public class MainController {
         Goods message = new Goods(title, description, cost,category);
 
         if (file != null && !file.getOriginalFilename().isEmpty()) {
-            File uploadDir = new File(uploadPath);
-
-            if (!uploadDir.exists()) {
-                uploadDir.mkdir();
-            }
-
-            String uuidFile = UUID.randomUUID().toString();
-            String resultFilename = uuidFile + "." + file.getOriginalFilename();
-
-            file.transferTo(new File(uploadPath + "/" + resultFilename));
+            File convFile = new File(file.getOriginalFilename());
+            convFile.createNewFile();
+            FileOutputStream fos = new FileOutputStream(convFile);
+            fos.write(file.getBytes());
+            fos.close();
 
 
-//            final File appFolder = new File(System.getProperty("user.home"), ".yourapp");
+            byte[] fileContent = FileUtils.readFileToByteArray(convFile);
+            String encodedString = Base64.getEncoder().encodeToString(fileContent);
 
-            message.setFilename(resultFilename);
+            message.setFilename("data:image/jpeg;base64," + encodedString);
         }
 
         messageRepo.save(message);

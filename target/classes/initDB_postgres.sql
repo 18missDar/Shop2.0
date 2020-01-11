@@ -19,7 +19,7 @@ active boolean not null,
 category varchar(255),
 cost varchar(255),
  description varchar(255),
- filename varchar(255),
+ filename varchar (900000),
  title varchar(255),
  primary key (id));
 
