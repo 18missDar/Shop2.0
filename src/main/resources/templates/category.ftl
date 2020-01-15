@@ -26,27 +26,31 @@
   </div>
 
   <div class="col-9">
-         <div class="card-columns">
-             <#list messages as message>
-             <div class="card my-3">
-                 <#if message.filename??>
-                 <img src=${message.filename} class="card-img-top">
-                 </#if>
-                 <div class="m-2">
-                    <i>${message.title}</i>
-                    <i>${message.description}</i>
-                 </div>
-                 <div class="card-footer text-muted">
-                     <p> Цена: ${message.cost}</p>
-                     <div class="form-group">
-                        <a href="/add/${message.id}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add to basket</a>
-                     </div>
-                 </div>
-             </div>
-             <#else>
-             No message
-             </#list>
-         </div>
+      <div class="card-columns">
+          <#list messages as message>
+              <div class="card my-3 h-100">
+                  <h3 class="card-title">${message.title}</h3>
+                  <#if message.filename??>
+                      <img src=${message.filename} class="card-img-top">
+                  </#if>
+
+                  <div class="card-footer text-muted">
+                      <p> Description: ${message.description} </p>
+                      <p> Cost: ${message.cost}</p>
+                      <div class="form-group">
+                          <#if isAdmin>
+                              <a href="/delete/${message.id}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Delete</a>
+                              <a href="/update/${message.id}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Update</a>
+                          <#else>
+                              <a href="/addc/${message.id}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add to cart</a>
+                          </#if>
+                      </div>
+                  </div>
+              </div>
+          <#else>
+              No message
+          </#list>
+      </div>
 
     </div>
   </div>

@@ -46,7 +46,7 @@ public class CartController {
         myCart.setItems(items);
     }
 
-    @GetMapping("/add/{id}")
+    @GetMapping("/addc/{id}")
     public String addBasket(@PathVariable("id") Long id, @AuthenticationPrincipal User user){
         Goods good = goodRepo.findById(id).get();
         String categ = good.getCategory();
@@ -74,6 +74,35 @@ public class CartController {
         }
         cartRepo.save(myCart);
         return "redirect:/main/category?category=" + categ;
+    }
+
+    @GetMapping("/add/{id}")
+    public String addBasketC(@PathVariable("id") Long id, @AuthenticationPrincipal User user){
+        Goods good = goodRepo.findById(id).get();
+        Optional<Cart> cart = cartRepo.findByUser(user);
+        Cart myCart;
+        if (cart.isPresent()){
+            myCart = cart.get();
+            Item newItem = myCart.find(good);
+            if ( newItem != null){
+                int size = newItem.getQuantity();
+                newItem.setQuantity(size+1);
+                updateList(myCart, newItem);
+            }
+            else{
+                Item item = new Item(good.getId(), 1, user);
+                updateList(myCart, item);
+            }
+        }
+        else{
+            Item item = new Item(good.getId(), 1, user);
+            itemRepo.save(item);
+            List<Item> items = new ArrayList<>();
+            items.add(item);
+            myCart = new Cart(items, user);
+        }
+        cartRepo.save(myCart);
+        return "redirect:/main";
     }
 
     @GetMapping("/cart")
@@ -126,7 +155,7 @@ public class CartController {
             User usr = users.get(i);
             List<Usercarts> usercartsLisPayed = userPayedGoods.findByUsername(usr.getUsername());
             for (int j = 0; j< usercartsLisPayed.size(); j++){
-                if (usercartsLisPayed.get(j).isPayed()){
+                if (usercartsLisPayed.get(j).isPayed() && !usercartsLisPayed.get(j).getTitle().equals(usr.getUsername())){
                     usercartsList.add(usercartsLisPayed.get(j));
                 }
             }

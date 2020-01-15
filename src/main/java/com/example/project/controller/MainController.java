@@ -57,6 +57,20 @@ public class MainController {
         return "main";
     }
 
+    @RequestMapping("/login")
+    public String loginUser(Model model){
+        model.addAttribute("error", false);
+        return "login";
+    }
+
+
+
+    @RequestMapping("/login-fail")
+    public String loginUser2(Model model){
+        model.addAttribute("error", true);
+        return "login";
+    }
+
 
     @PostMapping("/main")
     public String add(@RequestParam String title,

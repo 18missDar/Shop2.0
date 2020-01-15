@@ -47,6 +47,8 @@ public class UserService implements UserDetailsService {
 
     public void sendOrderMessage(User user) {
         String payed = "";
+        String thanks = "\n" +
+                "Thank you for your purchase in our store, we will always collect the best products for you, we are waiting for you again!";
         List<Usercarts> usercartsLisPayed = userPayedGoods.findByUsername(user.getUsername());
         for (int i = 0; i< usercartsLisPayed.size(); i++){
             Usercarts usercarts = usercartsLisPayed.get(i);
@@ -74,7 +76,7 @@ public class UserService implements UserDetailsService {
         if (!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format(
                     "Hello, %s! \n" +
-                            "Your order was successful framed. Payed goods : \n" + payed,
+                            "Your order was successful framed. Payed goods : \n" + payed + thanks,
                     user.getUsername()
             );
 

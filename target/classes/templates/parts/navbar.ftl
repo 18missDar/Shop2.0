@@ -29,12 +29,10 @@
             </#if>
             <#if user??>
                 <li class="nav-item">
-                    <a class="nav-link" href="/user/profile">Profile</a>
-                </li>
-            </#if>
-            <#if user??>
-                <li class="nav-item">
                     <a class="nav-link" href="/cart">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/profile">Profile</a>
                 </li>
             </#if>
         </ul>
