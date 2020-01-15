@@ -1,5 +1,5 @@
 <#import "parts/common.ftl" as c>
-
+<#include "parts/security.ftl">
 <@c.page>
     <#if name =="guest">
         <h5>Hello, guest</h5>
