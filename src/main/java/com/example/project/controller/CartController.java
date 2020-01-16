@@ -193,6 +193,12 @@ public class CartController {
         return "showorder";
     }
 
+    public void clearCart(User user){
+        Cart cart = cartRepo.findByUser(user).get();
+        List<Item> items = new ArrayList<>();
+        cart.setItems(items);
+        cartRepo.save(cart);
+    }
 
     @GetMapping("/pay")
     public String pay(@AuthenticationPrincipal User user) {
@@ -201,6 +207,7 @@ public class CartController {
             usercartsLisPayed.get(i).setPayed(true);
             userPayedGoods.save(usercartsLisPayed.get(i));
         }
+        clearCart(user);
         userSevice.sendOrderMessage(user);
         return "pay";
     }

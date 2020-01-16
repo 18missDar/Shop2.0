@@ -3,15 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4f45823a-4862-4155-9613-b7f1bb6ea255" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project/controller/CartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project/controller/CategoryConroller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project/controller/CategoryConroller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project/controller/GoodsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project/controller/GoodsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/category.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/category.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/discounts.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/discounts.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/main.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/main.ftl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +176,7 @@
       <workItem from="1578671170194" duration="1433000" />
       <workItem from="1578760165191" duration="3887000" />
       <workItem from="1579091893050" duration="2591000" />
-      <workItem from="1579180228384" duration="791000" />
+      <workItem from="1579180228384" duration="1630000" />
     </task>
     <servers />
   </component>
@@ -225,22 +216,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="758" y="222" key="ExecutionTargetDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1579092767851" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1579097365022">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1579182102595">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1579097365022" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1579097365021">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1579182102595" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1579182102595">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1579097365021" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1579097365021">
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1579182102595" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1579182102595">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1579097365021" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1579097365022">
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1579182102595" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1579182102595">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1579097365022" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1579182102595" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1576614253092">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -269,9 +260,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1576613774676" />
-    <state x="656" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1579180228501">
+    <state x="656" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1579197468290">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1579180228501" />
+    <state x="656" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1579197468290" />
   </component>
 </project>
