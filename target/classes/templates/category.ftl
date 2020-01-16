@@ -41,9 +41,10 @@
                           <#if isAdmin>
                               <a href="/delete/${message.id}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Delete</a>
                               <a href="/update/${message.id}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Update</a>
-                          <#else>
-                              <a href="/addc/${message.id}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add to cart</a>
                           </#if>
+                          <div class="my-2">
+                              <a href="/addc/${message.id}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add to cart</a>
+                          </div>
                       </div>
                   </div>
               </div>

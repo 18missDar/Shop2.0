@@ -2,30 +2,23 @@ package com.example.project.controller;
 
 import com.example.project.domain.Goods;
 import com.example.project.domain.Report;
-import com.example.project.domain.User;
 import com.example.project.repository.GoodsRepository;
-import com.example.project.service.GoodService;
+import com.example.project.repository.UserRepository;
 import com.example.project.service.MyHandler;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.ContextLoader;
 import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
-import sun.misc.BASE64Encoder;
 
-import javax.imageio.ImageIO;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import java.awt.image.BufferedImage;
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 
 @Controller
@@ -33,25 +26,22 @@ public class MainController {
     @Autowired
     private GoodsRepository messageRepo;
 
-    @Value("${upload.path}")
-    private String uploadPath;
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/")
     public String greeting(Model model) {
         return "greeting";
     }
 
+    public List<Goods> filterIsOk(String filter){
+        return StringUtils.isNotBlank(filter) ? messageRepo.findByTitle(filter) : messageRepo.findAll();
+    }
+
     @GetMapping("/main")
     public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
-        Iterable<Goods> messages = messageRepo.findAll();
 
-        if (filter != null && !filter.isEmpty()) {
-            messages = messageRepo.findByTitle(filter);
-        } else {
-            messages = messageRepo.findAll();
-        }
-
-        model.addAttribute("messages", messages);
+        model.addAttribute("messages", filterIsOk(filter));
         model.addAttribute("filter", filter);
 
         return "main";
@@ -71,6 +61,22 @@ public class MainController {
         return "login";
     }
 
+    public void encodingAndSavePicture(Goods message, MultipartFile file) throws IOException{
+        if (file != null && !file.getOriginalFilename().isEmpty()) {
+            File convFile = new File(file.getOriginalFilename());
+            convFile.createNewFile();
+            FileOutputStream fos = new FileOutputStream(convFile);
+            fos.write(file.getBytes());
+            fos.close();
+
+            byte[] fileContent = FileUtils.readFileToByteArray(convFile);
+            String encodedString = Base64.getEncoder().encodeToString(fileContent);
+
+            message.setFilename("data:image/jpeg;base64," + encodedString);
+        }
+        messageRepo.save(message);
+    }
+
 
     @PostMapping("/main")
     public String add(@RequestParam String title,
@@ -79,27 +85,11 @@ public class MainController {
                       @RequestParam String category,
                       Map<String, Object> model,
                       @RequestParam("file") MultipartFile file) throws IOException {
-        Goods message = new Goods(title, description, cost,category);
+        Goods message = new Goods(title, description, cost, category);
 
-        if (file != null && !file.getOriginalFilename().isEmpty()) {
-            File convFile = new File(file.getOriginalFilename());
-            convFile.createNewFile();
-            FileOutputStream fos = new FileOutputStream(convFile);
-            fos.write(file.getBytes());
-            fos.close();
+        encodingAndSavePicture(message, file);
 
-
-            byte[] fileContent = FileUtils.readFileToByteArray(convFile);
-            String encodedString = Base64.getEncoder().encodeToString(fileContent);
-
-            message.setFilename("data:image/jpeg;base64," + encodedString);
-        }
-
-        messageRepo.save(message);
-
-        Iterable<Goods> messages = messageRepo.findAll();
-
-        model.put("messages", messages);
+        model.put("messages", messageRepo.findAll());
 
         return "main";
     }
@@ -128,9 +118,7 @@ public class MainController {
             messageRepo.save(report.goodsList.get(i));
         }
 
-        Iterable<Goods> messages = messageRepo.findAll();
-
-        model.put("messages", messages);
+        model.put("messages", messageRepo.findAll());
         file1.delete();
         return "main";
 

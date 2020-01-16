@@ -1,7 +1,5 @@
 package com.example.project.controller;
 
-
-import com.example.project.domain.Goods;
 import com.example.project.repository.GoodsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,10 +16,7 @@ public class CategoryConroller {
 
     @GetMapping("category")
     public String category(@RequestParam String category, Model model) {
-        Iterable<Goods> messages = messageRepo.findAll();
-
-        messages = messageRepo.findByCategory(category);
-        model.addAttribute("messages", messages);
+        model.addAttribute("messages", messageRepo.findByCategory(category));
 
         return "category";
     }

@@ -45,28 +45,46 @@ public class UserService implements UserDetailsService {
         }
     }
 
+    public void sendDiscountMessage(User user, String category, String discount) {
+        if (!StringUtils.isEmpty(user.getEmail())) {
+            String message = String.format(
+                    "Hello, %s! \n \n" +
+                            "Our store makes a " + discount + " percent discount on category " + category +
+                            " products.\n \nWe will be glad to see you in our store. "+
+                            "Don't miss your chance and visit next link: https://daronlineshop.herokuapp.com/",
+                    user.getUsername()
+            );
+
+            mailSender.send(user.getEmail(), "Sale!!!", message);
+        }
+    }
+
     public void sendOrderMessage(User user) {
         String payed = "";
-        String thanks = "\n" +
+        String thanks = "\n \n" +
                 "Thank you for your purchase in our store, we will always collect the best products for you, we are waiting for you again!";
         List<Usercarts> usercartsLisPayed = userPayedGoods.findByUsername(user.getUsername());
+        int k = 0;
         for (int i = 0; i< usercartsLisPayed.size(); i++){
             Usercarts usercarts = usercartsLisPayed.get(i);
             if (usercarts.isMailed() == false){
                 if (usercarts.getTitle().equals(user.getUsername())){
                     payed += "Total cost: ";
                     payed += usercarts.getTotalcost();
+                    payed += "  \n";
                 }
                 else{
-                    payed += "Title: ";
+                    k += 1;
+                    payed += Integer.toString(k);
+                    payed += ". Title: ";
                     payed += usercarts.getTitle();
-                    payed += "  ";
-                    payed += " Cost: ";
-                    payed += usercarts.getCost();
-                    payed += "  ";
-                    payed += " Amount: ";
-                    payed += usercarts.getAmount();
                     payed += "  \n";
+                    payed += "    Cost: ";
+                    payed += usercarts.getCost();
+                    payed += "  \n";
+                    payed += "    Amount: ";
+                    payed += usercarts.getAmount();
+                    payed += "  \n \n";
                 }
 
             }
@@ -75,8 +93,8 @@ public class UserService implements UserDetailsService {
         }
         if (!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format(
-                    "Hello, %s! \n" +
-                            "Your order was successful framed. Payed goods : \n" + payed + thanks,
+                    "Hello, %s! \n \n" +
+                            "Your order was successful framed. Payed goods : \n \n" + payed + thanks,
                     user.getUsername()
             );
 

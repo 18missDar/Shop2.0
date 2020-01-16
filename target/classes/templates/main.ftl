@@ -53,7 +53,12 @@
                                 <input type="text" class="form-control" name="cost" placeholder="Стоимость">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="category" placeholder="Введите артикул категории">
+                                <select type="text" name="category" class="form-control">
+                                    <option type="text" value = "1">Category 1</option>
+                                    <option type="text" value = "2">Category 2</option>
+                                    <option type="text" value = "3">Category 3</option>
+                                    <option type="text" value = "4">Category 4</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <div class="custom-file">
@@ -112,9 +117,10 @@
                                     <#if isAdmin>
                                         <a href="/delete/${message.id}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Delete</a>
                                         <a href="/update/${message.id}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Update</a>
-                                    <#else>
-                                        <a href="/add/${message.id}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add to cart</a>
                                     </#if>
+                                    <div class="my-2">
+                                        <a href="/add/${message.id}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add to cart</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
