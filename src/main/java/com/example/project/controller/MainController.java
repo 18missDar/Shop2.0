@@ -1,6 +1,7 @@
 package com.example.project.controller;
 
 import com.example.project.domain.Goods;
+import com.example.project.domain.Item;
 import com.example.project.domain.Report;
 import com.example.project.repository.GoodsRepository;
 import com.example.project.repository.UserRepository;
@@ -20,6 +21,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 public class MainController {
@@ -34,8 +36,25 @@ public class MainController {
         return "greeting";
     }
 
+    public boolean isActive(Goods good){
+        return messageRepo.findById(good.getId()).get().isActive();
+    }
+
+
+    public List<Goods> findActiveGoods(){
+        return messageRepo.findAll().stream()
+                .filter(this::isActive)
+                .collect(Collectors.toList());
+    }
+
+    public List<Goods> findFilterActiveGoods(String filter){
+        return messageRepo.findByTitle(filter).stream()
+                .filter(this::isActive)
+                .collect(Collectors.toList());
+    }
+
     public List<Goods> filterIsOk(String filter){
-        return StringUtils.isNotBlank(filter) ? messageRepo.findByTitle(filter) : messageRepo.findAll();
+        return StringUtils.isNotBlank(filter) ? findFilterActiveGoods(filter) : findActiveGoods();
     }
 
     @GetMapping("/main")
@@ -193,5 +212,7 @@ public class MainController {
         model.addAttribute("result", result);
         return "uploadXML";
     }
+
+
 
 }
