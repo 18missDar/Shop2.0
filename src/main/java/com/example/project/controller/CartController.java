@@ -86,7 +86,7 @@ public class CartController {
         return "redirect:/main";
     }
 
-    public List<GoodsInCart> saveGoodInCart(Cart myCart) {
+    public List<GoodsInCart> saveGoodInCart(Cart myCart){
         List<GoodsInCart> messages = new ArrayList<>();
         for (Item item : myCart.getItems()) {
             Goods good = goodRepo.findById(item.getGoodID()).get();
@@ -150,15 +150,29 @@ public class CartController {
         return "usercarts";
     }
 
-    public double formationOfPayedGoodsAndTotalSum(Cart myCart, String userName) {
+    public boolean isActive(Item item){
+        return goodRepo.findById(item.getGoodID()).get().isActive();
+    }
+
+    public Usercarts createUserCart(Item item, String userName){
+        Goods good = goodRepo.findById(item.getGoodID()).get();
+        Usercarts usercarts = new Usercarts(userName, good.getTitle(), good.getCost(), item.getQuantity().toString());
+        userPayedGoods.save(usercarts);
+        return usercarts;
+    }
+
+    public List<Usercarts> formationPayedGoods(Cart myCart, String userName){
+        return myCart.getItems().stream()
+                .filter(this::isActive)
+                .map(item -> createUserCart(item, userName))
+                .collect(Collectors.toList());
+    }
+
+    public double formationTotalSum(Cart myCart, String userName ){
         double sum = 0;
-        for (Item item : myCart.getItems()) {
-            Goods good = goodRepo.findById(item.getGoodID()).get();
-            if (good.isActive()) {
-                sum += Double.valueOf(good.getCost()) * Double.valueOf(item.getQuantity());
-                Usercarts usercarts = new Usercarts(userName, good.getTitle(), good.getCost(), item.getQuantity().toString());
-                userPayedGoods.save(usercarts);
-            }
+        List<Usercarts> usercartsList = formationPayedGoods(myCart, userName);
+        for (Usercarts usercarts: usercartsList){
+            sum += Double.valueOf(usercarts.getCost()) * Double.valueOf(usercarts.getAmount());
         }
         Usercarts usercarts = new Usercarts(userName, userName, userName, userName);
         usercarts.setTotalcost(Double.toString(sum));
@@ -166,25 +180,33 @@ public class CartController {
         return sum;
     }
 
-    public List<GoodsInCart> formationofCheckoutGoods(Cart myCart) {
-        List<GoodsInCart> messages = new ArrayList<>();
-        for (Item item : myCart.getItems()) {
-            Goods good = goodRepo.findById(item.getGoodID()).get();
-            if (good.isActive()) {
-                GoodsInCart goods = new GoodsInCart(good.getTitle(), good.getCost(), item.getQuantity(), good.getId());
-                messages.add(goods);
-            }
-        }
-        return messages;
+
+    public GoodsInCart createGoodInCart(Item item){
+        Goods good = goodRepo.findById(item.getGoodID()).get();
+        return new GoodsInCart(good.getTitle(), good.getCost(), item.getQuantity(), good.getId());
     }
 
+    public List<GoodsInCart> formationofCheckoutGoods(Cart myCart){
+        return myCart.getItems().stream()
+                .filter(this::isActive)
+                .map(this::createGoodInCart)
+                .collect(Collectors.toList());
+    }
+
+
+    public void clearCart(User user){
+        Cart cart = cartRepo.findByUser(user).get();
+        List<Item> items = new ArrayList<>();
+        cart.setItems(items);
+        cartRepo.save(cart);
+    }
     @GetMapping("/checkout")
     public String showGoodsInOrder(@AuthenticationPrincipal User user, Model model) {
         Optional<Cart> cart = cartRepo.findByUser(user);
         List<GoodsInCart> messages = new ArrayList<>();
         double sum = 0;
         if (cart.isPresent()) {
-            sum = formationOfPayedGoodsAndTotalSum(cart.get(), user.getUsername());
+            sum = formationTotalSum(cart.get(), user.getUsername());
             messages = formationofCheckoutGoods(cart.get());
         }
 
@@ -193,24 +215,19 @@ public class CartController {
         return "showorder";
     }
 
-    public void clearCart(User user){
-        Cart cart = cartRepo.findByUser(user).get();
-        List<Item> items = new ArrayList<>();
-        cart.setItems(items);
-        cartRepo.save(cart);
-    }
 
     @GetMapping("/pay")
     public String pay(@AuthenticationPrincipal User user) {
-        List<Usercarts> usercartsLisPayed = userPayedGoods.findByUsername(user.getUsername());
-        for (int i = 0; i < usercartsLisPayed.size(); i++) {
-            usercartsLisPayed.get(i).setPayed(true);
-            userPayedGoods.save(usercartsLisPayed.get(i));
-        }
+        userPayedGoods.findByUsername(user.getUsername()).forEach(userCarts -> {
+            userCarts.setPayed(true);
+            userPayedGoods.save(userCarts);
+        });
+
         clearCart(user);
         userSevice.sendOrderMessage(user);
         return "pay";
     }
+
 
 }
 

@@ -35,6 +35,11 @@
                     <a class="nav-link" href="/user/profile">Profile</a>
                 </li>
             </#if>
+            <#if isAdmin>
+                <li class="nav-item">
+                    <a class="nav-link" href="/uploadXML">Upload XML</a>
+                </li>
+            </#if>
         </ul>
 
         <div class="navbar-text mr-3">${name}</div>

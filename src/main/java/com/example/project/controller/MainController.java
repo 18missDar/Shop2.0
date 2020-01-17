@@ -124,4 +124,74 @@ public class MainController {
 
     }
 
+    @GetMapping("/uploadXML")
+    public String showPageUpload(Model model){
+        String result = "";
+        model.addAttribute("result", result);
+        return "uploadXML";
+    }
+
+    public String creategoodXmlFromCategory(String category){
+        String goodsXml = "";
+        List<Goods> goodsList = messageRepo.findByCategory(category);
+        for (int i = 0; i< goodsList.size(); i++){
+            Goods good = goodsList.get(i);
+            goodsXml += "<good>\n" +
+                    "<title> " + good.getTitle() +"</title>\n" +
+                    "<description> " + good.getDescription() +"</description>\n" +
+                    "<cost> " + good.getCost() +"</cost>\n" +
+                    "</good>\n";
+        }
+        return goodsXml;
+    }
+
+    public String formationXml(String category) {
+        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?> \n" +
+                "<?xml version=\"1.0\" encoding=\"UTF-8\"?> \n"
+                + "<report>\n";
+        String goodsXml = creategoodXmlFromCategory(category);
+        xml += "<goods category = \"" + category +"\">\n"
+                +goodsXml +
+                "</goods>\n" +
+                "</report>";
+        return xml;
+    }
+
+    public String formationAllXml() {
+        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?> \n" +
+                "<?xml version=\"1.0\" encoding=\"UTF-8\"?> \n"
+                + "<report>\n";
+        String goodsXml1 = creategoodXmlFromCategory("1");
+        String goodsXml2 = creategoodXmlFromCategory("2");
+        String goodsXml3 = creategoodXmlFromCategory("3");
+        String goodsXml4 = creategoodXmlFromCategory("4");
+        xml += "<goods category = \"" + 1 +"\">\n"
+                +goodsXml1 +
+                "</goods>\n" +
+                "<goods category = \"" + 2 +"\">\n"
+                +goodsXml2 +
+                "</goods>\n" +
+                "<goods category = \"" + 3 +"\">\n"
+                +goodsXml3 +
+                "</goods>\n" +
+                "<goods category = \"" + 4 +"\">\n"
+                +goodsXml4 +
+                "</goods>\n" +
+                "</report>";
+        return xml;
+    }
+
+    @PostMapping("/uploadXML")
+    public String showPageUpload2(@RequestParam String category, Model model){
+        String result;
+        if (category.equals("5")){
+            result = formationAllXml();
+        }
+        else{
+            result = formationXml(category);
+        }
+        model.addAttribute("result", result);
+        return "uploadXML";
+    }
+
 }
