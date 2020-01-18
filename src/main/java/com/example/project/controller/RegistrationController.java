@@ -41,6 +41,7 @@ public class RegistrationController {
             model.addAttribute("message", "Activation code is not found!");
         }
 
+        model.addAttribute("error", false);
         return "login";
     }
 }
