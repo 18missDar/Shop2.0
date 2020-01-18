@@ -150,9 +150,15 @@ public class MainController {
         return "uploadXML";
     }
 
+    public List<Goods> findActiveGoodsByCategory(String category){
+        return messageRepo.findByCategory(category).stream()
+                .filter(this::isActive)
+                .collect(Collectors.toList());
+    }
+
     public String creategoodXmlFromCategory(String category){
         String goodsXml = "";
-        List<Goods> goodsList = messageRepo.findByCategory(category);
+        List<Goods> goodsList = findActiveGoodsByCategory(category);
         for (int i = 0; i< goodsList.size(); i++){
             Goods good = goodsList.get(i);
             goodsXml += "<good>\n" +
