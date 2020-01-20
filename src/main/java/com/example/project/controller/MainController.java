@@ -157,53 +157,51 @@ public class MainController {
     }
 
     public String creategoodXmlFromCategory(String category){
-        String goodsXml = "";
+        StringBuilder goodsFromXml = new StringBuilder();
         List<Goods> goodsList = findActiveGoodsByCategory(category);
         for (int i = 0; i< goodsList.size(); i++){
             Goods good = goodsList.get(i);
-            goodsXml += "<good>\n" +
-                    "<title> " + good.getTitle() +"</title>\n" +
-                    "<description> " + good.getDescription() +"</description>\n" +
-                    "<cost> " + good.getCost() +"</cost>\n" +
-                    "</good>\n";
+            goodsFromXml.append("<good>\n")
+                    .append("<title> " + good.getTitle() +"</title>\n")
+                    .append("<description> " + good.getDescription() +"</description>\n")
+                    .append("<cost> " + good.getCost() +"</cost>\n")
+                    .append("</good>\n");
         }
-        return goodsXml;
+        return goodsFromXml.toString();
     }
 
     public String formationXml(String category) {
-        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?> \n" +
-                "<?xml version=\"1.0\" encoding=\"UTF-8\"?> \n"
-                + "<report>\n";
+        StringBuilder xmlfile = new StringBuilder();
+        xmlfile.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?> \n")
+                .append("<?xml version=\"1.0\" encoding=\"UTF-8\"?> \n")
+                .append("<report>\n");
         String goodsXml = creategoodXmlFromCategory(category);
-        xml += "<goods category = \"" + category +"\">\n"
-                +goodsXml +
-                "</goods>\n" +
-                "</report>";
-        return xml;
+        xmlfile.append("<goods category = \"" + category +"\">\n")
+                .append(goodsXml)
+                .append("</goods>\n")
+                .append("</report>");
+        return xmlfile.toString();
     }
 
     public String formationAllXml() {
-        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?> \n" +
-                "<?xml version=\"1.0\" encoding=\"UTF-8\"?> \n"
-                + "<report>\n";
+        StringBuilder xmlfile = new StringBuilder();
+        xmlfile.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?> \n")
+                .append("<?xml version=\"1.0\" encoding=\"UTF-8\"?> \n")
+                .append("<report>\n");
         String goodsXml1 = creategoodXmlFromCategory("1");
         String goodsXml2 = creategoodXmlFromCategory("2");
         String goodsXml3 = creategoodXmlFromCategory("3");
         String goodsXml4 = creategoodXmlFromCategory("4");
-        xml += "<goods category = \"" + 1 +"\">\n"
-                +goodsXml1 +
-                "</goods>\n" +
-                "<goods category = \"" + 2 +"\">\n"
-                +goodsXml2 +
-                "</goods>\n" +
-                "<goods category = \"" + 3 +"\">\n"
-                +goodsXml3 +
-                "</goods>\n" +
-                "<goods category = \"" + 4 +"\">\n"
-                +goodsXml4 +
-                "</goods>\n" +
-                "</report>";
-        return xml;
+        xmlfile.append("<goods category = \"" + 1 +"\">\n")
+                .append(goodsXml1 + "</goods>\n")
+                .append("<goods category = \"" + 2 +"\">\n")
+                .append(goodsXml2 + "</goods>\n")
+                .append("<goods category = \"" + 3 +"\">\n")
+                .append(goodsXml3 + "</goods>\n")
+                .append("<goods category = \"" + 4 +"\">\n")
+                .append(goodsXml4 + "</goods>\n")
+                .append("</report>");
+        return xmlfile.toString();
     }
 
     @PostMapping("/uploadXML")

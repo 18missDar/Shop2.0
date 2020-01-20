@@ -11,7 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
+
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -33,34 +34,37 @@ public class UserService implements UserDetailsService {
     }
 
     private void sendMessage(User user) {
-        if (!StringUtils.isEmpty(user.getEmail())) {
-            String message = String.format(
-                    "Hello, %s! \n" +
-                            "Welcome to Our Online Shop. Please, visit next link: https://daronlineshop.herokuapp.com/activate/%s",
-                    user.getUsername(),
-                    user.getActivationCode()
-            );
+        if ((!StringUtils.isNotBlank(user.getEmail()))) {
+            StringBuilder messages = new StringBuilder();
+            messages.append("Hello, ")
+                    .append(user.getUsername())
+                    .append(" ! \n")
+                    .append("Welcome to Our Online Shop. Please, visit next link: https://daronlineshop.herokuapp.com/activate/")
+                    .append(user.getActivationCode());
 
-            mailSender.send(user.getEmail(), "Activation code", message);
+            mailSender.send(user.getEmail(), "Activation code", messages.toString());
         }
     }
 
     public void sendDiscountMessage(User user, String category, String discount) {
-        if (!StringUtils.isEmpty(user.getEmail())) {
-            String message = String.format(
-                    "Hello, %s! \n \n" +
-                            "Our store makes a " + discount + " percent discount on category " + category +
-                            " products.\n \nWe will be glad to see you in our store. "+
-                            "Don't miss your chance and visit next link: https://daronlineshop.herokuapp.com/",
-                    user.getUsername()
-            );
+        if ((!StringUtils.isNotBlank(user.getEmail()))) {
+            StringBuilder messages = new StringBuilder();
+            messages.append("Hello, ")
+                    .append(user.getUsername())
+                    .append(" ! \n \n")
+                    .append("Our store makes a ")
+                    .append(discount)
+                    .append(" percent discount on category ")
+                    .append(category)
+                    .append(" products.\n \nWe will be glad to see you in our store. ")
+                    .append("Don't miss your chance and visit next link: https://daronlineshop.herokuapp.com/");
 
-            mailSender.send(user.getEmail(), "Sale!!!", message);
+            mailSender.send(user.getEmail(), "Sale!!!", messages.toString());
         }
     }
 
     public void sendOrderMessage(User user) {
-        String payed = "";
+        StringBuilder payed = new StringBuilder();
         String thanks = "\n \n" +
                 "Thank you for your purchase in our store, we will always collect the best products for you, we are waiting for you again!";
         List<Usercarts> usercartsLisPayed = userPayedGoods.findByUsername(user.getUsername());
@@ -69,36 +73,37 @@ public class UserService implements UserDetailsService {
             Usercarts usercarts = usercartsLisPayed.get(i);
             if (usercarts.isMailed() == false){
                 if (usercarts.getTitle().equals(user.getUsername())){
-                    payed += "Total cost: ";
-                    payed += usercarts.getTotalcost();
-                    payed += "  \n";
+                    payed.append("Total cost: ")
+                            .append(usercarts.getTotalcost())
+                            .append("  \n");
                 }
                 else{
                     k += 1;
-                    payed += Integer.toString(k);
-                    payed += ". Title: ";
-                    payed += usercarts.getTitle();
-                    payed += "  \n";
-                    payed += "    Cost: ";
-                    payed += usercarts.getCost();
-                    payed += "  \n";
-                    payed += "    Amount: ";
-                    payed += usercarts.getAmount();
-                    payed += "  \n \n";
+                    payed.append(Integer.toString(k))
+                            .append(". Title: ")
+                            .append(usercarts.getTitle())
+                            .append("  \n")
+                            .append("    Cost: ")
+                            .append(usercarts.getCost())
+                            .append("  \n")
+                            .append("    Amount: ")
+                            .append(usercarts.getAmount())
+                            .append("  \n \n");
                 }
 
             }
             usercarts.setMailed(true);
             userPayedGoods.save(usercarts);
         }
-        if (!StringUtils.isEmpty(user.getEmail())) {
-            String message = String.format(
-                    "Hello, %s! \n \n" +
-                            "Your order was successful framed. Payed goods : \n \n" + payed + thanks,
-                    user.getUsername()
-            );
-
-            mailSender.send(user.getEmail(), "Order message", message);
+        if (!StringUtils.isNotBlank(user.getEmail())) {
+            StringBuilder messages = new StringBuilder();
+            messages.append("Hello, ")
+                    .append(user.getUsername())
+                    .append(" ! \n \n")
+                    .append("Your order was successful framed. Payed goods : \n \n")
+                    .append(payed)
+                    .append(thanks);
+            mailSender.send(user.getEmail(), "Order message", messages.toString());
         }
     }
 
