@@ -33,7 +33,7 @@
 
     <artifactId>hibernate-core</artifactId>
 
-    <version>5.4.9.Final</version>
+    <version>5.4.24.Final</version>
 
     </dependency>
 
